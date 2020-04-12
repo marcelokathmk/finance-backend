@@ -22,4 +22,8 @@ public class ProductService {
     public List<Product> listProductsByDeviceCodeAndCountry(String deviceCode, String country){
         return repository.findByDeviceCodeAndCountry(deviceCode, country);
     }
+
+    public void deleteProduct(Long id){
+        repository.deleteById(id);
+    }
 }

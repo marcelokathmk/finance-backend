@@ -14,4 +14,6 @@ public class Header {
     private String version;
 
     private String session;
+
+    private String message;
 }
