@@ -4,16 +4,15 @@ import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
 import pt.com.financebackend.converter.ProductConverter;
 import pt.com.financebackend.model.CreateProductResponse;
-import pt.com.financebackend.model.Header;
+import pt.com.financebackend.model.ReadProductsResponse;
 import pt.com.financebackend.model.dto.ProductDTO;
 import pt.com.financebackend.service.ProductService;
 
 @RestController
 @RequestMapping(value = "/product")
-public class ProductController{
+public class ProductController extends BaseController{
 
     @Autowired
     private ProductService service;
@@ -27,14 +26,12 @@ public class ProductController{
     }
 
     @GetMapping(value = "/read")
-    public ResponseEntity<Void> read(@RequestParam(name = "ds_country") String coutry,
-                                     @RequestParam(name = "ds_device_code") String deviceCode){
-        try {
-            throw new ExecutionControl.NotImplementedException("Implement me!");
-        } catch (ExecutionControl.NotImplementedException e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ReadProductsResponse> read(@RequestParam(name = "ds_country") String coutry,
+                                                     @RequestParam(name = "ds_device_code") String deviceCode){
+        ReadProductsResponse response = new ReadProductsResponse();
+        response.setHeader(getHeader("read"));
+        response.setProducts(ProductConverter.fromEntityToDTO(service.listProductsByDeviceCodeAndCountry(deviceCode, coutry)));
+        return ResponseEntity.ok().body(response);
     }
 
     @PutMapping(value = "/update")
@@ -55,14 +52,5 @@ public class ProductController{
             e.printStackTrace();
         }
         return ResponseEntity.noContent().build();
-    }
-
-    private Header getHeader(String function){
-        Header header = new Header();
-        header.setFunction(function);
-        header.setService("product");
-        header.setSession(RequestContextHolder.currentRequestAttributes().getSessionId());
-        header.setVersion("1.0");
-        return header;
     }
 }

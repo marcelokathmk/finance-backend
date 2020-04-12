@@ -7,6 +7,8 @@ import pt.com.financebackend.entity.Product;
 import pt.com.financebackend.model.dto.ProductDTO;
 import pt.com.financebackend.repository.ProductRepository;
 
+import java.util.List;
+
 @Service
 public class ProductService {
 
@@ -15,5 +17,9 @@ public class ProductService {
 
     public Product saveProduct(ProductDTO dto){
          return repository.save(ProductConverter.fromDTOToEntity(dto));
+    }
+
+    public List<Product> listProductsByDeviceCodeAndCountry(String deviceCode, String country){
+        return repository.findByDeviceCodeAndCountry(deviceCode, country);
     }
 }
