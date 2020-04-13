@@ -1,8 +1,10 @@
 package pt.com.financebackend.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class Header {
 
     private String service;
@@ -12,4 +14,6 @@ public class Header {
     private String version;
 
     private String session;
+
+    private String message;
 }
