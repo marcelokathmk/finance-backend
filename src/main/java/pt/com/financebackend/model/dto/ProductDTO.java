@@ -21,7 +21,7 @@ public class ProductDTO {
 
     private String deviceCode;
 
-    private Boolean status;
+    private Boolean status = Boolean.TRUE;
 
     private Date createdAt;
 

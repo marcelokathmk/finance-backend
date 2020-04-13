@@ -37,7 +37,7 @@ public class Product {
     @Column(name = "ds_device_code", nullable = false)
     private String deviceCode;
 
-    @Column(name = "is_status")
+    @Column(name = "is_status", columnDefinition = "INT(1) NOT NULL DEFAULT 1")
     private Boolean status;
 
     @Column(name = "dt_created_at")

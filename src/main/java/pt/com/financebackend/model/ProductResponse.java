@@ -6,7 +6,7 @@ import pt.com.financebackend.model.dto.ProductDTO;
 
 @Getter
 @Setter
-public class CreateProductResponse {
+public class ProductResponse {
 
     private Header header;
 
