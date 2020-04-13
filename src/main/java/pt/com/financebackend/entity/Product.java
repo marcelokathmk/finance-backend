@@ -34,10 +34,10 @@ public class Product {
     @Column(name = "ds_family")
     private String family;
 
-    @Column(name = "ds_device_code")
+    @Column(name = "ds_device_code", nullable = false)
     private String deviceCode;
 
-    @Column(name = "is_status")
+    @Column(name = "is_status", columnDefinition = "INT(1) NOT NULL DEFAULT 1")
     private Boolean status;
 
     @Column(name = "dt_created_at")
@@ -50,7 +50,7 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @Column(name = "ds_country")
+    @Column(name = "ds_country", nullable = false)
     private String country;
 
     @Column(name = "ds_msrp")
